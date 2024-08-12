@@ -9,7 +9,7 @@ import java.util.StringTokenizer;
 
 class Person{
     int size;
-    List<Person> beforePerson = new ArrayList<Person>();
+    List<Person> beforePerson = new ArrayList<>();
     boolean status = true;
 
     Person(int size){
