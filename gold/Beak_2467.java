@@ -22,23 +22,19 @@ public class Beak_2467 {
         int small_i=0;
         int big_i=n-1;
 
-        while(true){
-            if(small_i == big_i){
-                break;
-            }
-
+        while (small_i != big_i) {
 
             int sum = Math.abs(array[small_i] + array[big_i]);
             System.out.println("now : " + now + " sum : " + sum);
 
-            if(sum < now){
+            if (sum < now) {
                 now = sum;
                 small = array[small_i];
                 big = array[big_i];
             }
-            if(array[small_i] + array[big_i] < 0){
+            if (array[small_i] + array[big_i] < 0) {
                 small_i++;
-            } else{
+            } else {
                 big_i--;
             }
 
