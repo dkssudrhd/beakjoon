@@ -36,8 +36,8 @@ public class Beak_15656 {
 
     private static void dfs(int depth, int start){
         if(depth == m){
-            for(int i = 0; i < arr.length; i++){
-                sb.append(arr[i]).append(" ");
+            for (int j : arr) {
+                sb.append(j).append(" ");
             }
             sb.append("\n");
             return;
