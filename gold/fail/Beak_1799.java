@@ -1,4 +1,4 @@
-package gold;
+package gold.fail;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -53,26 +53,26 @@ class Playground {
 
 public class Beak_1799 {
 
-    static int[] max = new int[2];
+    static int max = 0;
 
-    static void playing(Playground playground, int startX, int startY, int color) {
+    static void playing(Playground playground, int startX, int startY) {
         boolean yes= true;
         for(int i = startX; i < playground.board.length; i++) {
             for(int j = 0; j < playground.board[0].length; j++) {
-                if(i == startX && yes  ){
+                if(i == startX && yes){
                     j = startY;
                     yes = false;
                 }
-                if(playground.board[i][j] && ((i+j)%2 == color)) {
+                if(playground.board[i][j]) {
                     Playground copy = new Playground(playground);
                     copy.boardChange(i, j);
                     copy.addBishop();
-                    playing(copy, i, j, color);
+                    playing(copy, i, j);
                 }
             }
         }
-        if(max[color] < playground.bishops){
-            max[color] = playground.bishops;
+        if(max < playground.bishops){
+            max = playground.bishops;
         }
     }
 
@@ -93,10 +93,9 @@ public class Beak_1799 {
             }
         }
         Playground first = new Playground(count, board);
-        playing(first, 0, 0, 0);
-        playing(first, 0, 1, 1);
+        playing(first, 0, 0);
 
-        System.out.println(max[0] + max[1]);
+        System.out.println(max);
     }
 
 }
