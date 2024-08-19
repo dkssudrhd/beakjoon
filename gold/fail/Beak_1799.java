@@ -1,3 +1,4 @@
+/*
 package gold.fail;
 
 import java.io.BufferedReader;
@@ -40,7 +41,7 @@ class Playground {
     }
 
     public void detailChange(int x, int y, int changeX, int changeY){
-        while(x>=0 && y>=0 && x<board.length && y<board[0].length){
+        while(x>=0 && y>=0 && x<board.length && y<board.length){
             if(board[x][y]){
                 board[x][y] = false;
                 count--;
@@ -57,6 +58,12 @@ public class Beak_1799 {
 
     static void playing(Playground playground, int startX, int startY) {
         boolean yes= true;
+
+        if(max < playground.bishops){
+            max = playground.bishops;
+        }
+        if(playground.count ==0)
+            return;
         for(int i = startX; i < playground.board.length; i++) {
             for(int j = 0; j < playground.board[0].length; j++) {
                 if(i == startX && yes){
@@ -67,12 +74,10 @@ public class Beak_1799 {
                     Playground copy = new Playground(playground);
                     copy.boardChange(i, j);
                     copy.addBishop();
+
                     playing(copy, i, j);
                 }
             }
-        }
-        if(max < playground.bishops){
-            max = playground.bishops;
         }
     }
 
@@ -99,3 +104,4 @@ public class Beak_1799 {
     }
 
 }
+*/
