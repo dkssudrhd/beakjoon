@@ -52,12 +52,12 @@ public class Beak_12100 {
 //        int[][] downArray = arrayCopy(array);
 //        down(downArray);
 //        play(downArray, n+1);
-//        int[][] leftArray = arrayCopy(array);
-//        left(leftArray);
-//        play(leftArray, n+1);
-        int[][] rightArray = arrayCopy(array);
-        right(rightArray);
-        play(rightArray, n+1);
+        int[][] leftArray = arrayCopy(array);
+        left(leftArray);
+        play(leftArray, n+1);
+//        int[][] rightArray = arrayCopy(array);
+//        right(rightArray);
+//        play(rightArray, n+1);
 
     }
 
@@ -103,14 +103,20 @@ public class Beak_12100 {
     }
 
     public static void left(int[][] array){
+        System.out.println("left start");
+        checking(array);
         for(int i=0; i<array.length; i++){
             int now = array[i][0];
             int nowJ = 0;
             for(int j=1; j<array[0].length; j++){
                 if(now == 0){
                     now = array[i][j];
-                }else if(now == array[i][j]){
-                    now += array[i][j];
+                } else if(array[i][j] ==0){
+                    continue;
+                }
+                else if(now == array[i][j]){
+                    array[i][nowJ++] = now *2;
+                    now = -1;
                 } else{
                     array[i][nowJ++] = now;
                     now = array[i][j];
@@ -121,22 +127,25 @@ public class Beak_12100 {
                 array[i][j] = 0;
             }
         }
+        System.out.println("left finish");
+        checking(array);
 
     }
 
     public static void right(int[][] array){
-        System.out.println("right start");
-        checking(array);
 
         for(int i=0; i<array.length; i++){
-            int now = array[i][array[i].length-1];
+            int now = 0;
             int nowJ = array[0].length - 1;
 
-            for(int j=2; j<=array[0].length; j++){
+            for(int j=1; j<=array[0].length; j++){
                 if(now == 0){
                     now = array[i][array[0].length - j];
-                }else if(now == array[i][array[0].length - j]){
-                    now += array[i][array[0].length - j];
+                } else if(array[i][array[0].length - j] == 0){
+                    continue;
+                } else if(now == array[i][array[0].length - j]){
+                    array[i][nowJ--] = now*2;
+                    now = 0;
                 } else{
                     array[i][nowJ--] = now;
                     now = array[i][array[0].length - j];
@@ -148,8 +157,6 @@ public class Beak_12100 {
             }
 
         }
-        System.out.println("right finish");
-        checking(array);
 
     }
     public static void main(String[] args) throws IOException {
