@@ -29,14 +29,6 @@ public class Beak_12100 {
         return newArray;
     }
 
-    public static void checking(int[][] array){
-        for(int[] numbers: array){
-            for (int number : numbers) {
-                System.out.print(number + " ");
-            }
-            System.out.println();
-        }
-    }
 
     public static void play(int[][] array, int n){
         if(n>5){
@@ -69,7 +61,6 @@ public class Beak_12100 {
                 if(now == 0){
                     now = array[j][i];
                 } else if(array[j][i] == 0){
-                    continue;
                 }
                 else if(now == array[j][i]){
                     array[nowJ++][i] = now *2;
@@ -94,7 +85,6 @@ public class Beak_12100 {
                 if(now == 0){
                     now = array[array.length - j][i];
                 } else if(array[array.length - j][i] == 0){
-                    continue;
                 } else if(now == array[array.length - j][i]){
                     array[nowJ--][i] = now*2;
                     now = 0;
@@ -118,7 +108,6 @@ public class Beak_12100 {
                 if(now == 0){
                     now = array[i][j];
                 } else if(array[i][j] ==0){
-                    continue;
                 }
                 else if(now == array[i][j]){
                     array[i][nowJ++] = now *2;
@@ -146,7 +135,6 @@ public class Beak_12100 {
                 if(now == 0){
                     now = array[i][array[0].length - j];
                 } else if(array[i][array[0].length - j] == 0){
-                    continue;
                 } else if(now == array[i][array[0].length - j]){
                     array[i][nowJ--] = now*2;
                     now = 0;
