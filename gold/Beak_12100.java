@@ -46,18 +46,18 @@ public class Beak_12100 {
             }
             return;
         }
-//        int[][] upArray = arrayCopy(array);
-//        up(upArray);
-//        play(upArray, n+1);
-//        int[][] downArray = arrayCopy(array);
-//        down(downArray);
-//        play(downArray, n+1);
+        int[][] upArray = arrayCopy(array);
+        up(upArray);
+        play(upArray, n+1);
+        int[][] downArray = arrayCopy(array);
+        down(downArray);
+        play(downArray, n+1);
         int[][] leftArray = arrayCopy(array);
         left(leftArray);
         play(leftArray, n+1);
-//        int[][] rightArray = arrayCopy(array);
-//        right(rightArray);
-//        play(rightArray, n+1);
+        int[][] rightArray = arrayCopy(array);
+        right(rightArray);
+        play(rightArray, n+1);
 
     }
 
@@ -68,43 +68,49 @@ public class Beak_12100 {
             for(int j=1; j<array[0].length; j++){
                 if(now == 0){
                     now = array[j][i];
-                }else if(now == array[j][i]){
-                    now += array[j][i];
+                } else if(array[j][i] == 0){
+                    continue;
+                }
+                else if(now == array[j][i]){
+                    array[nowJ++][i] = now *2;
+                    now = 0;
                 } else{
-                    array[nowJ][i] = now;
+                    array[nowJ++][i] = now;
                     now = array[j][i];
                 }
             }
-            for(int j=nowJ; j<array[0].length; j++){
+            array[nowJ][i] = now;
+            for(int j=nowJ+1; j<array[0].length; j++){
                 array[j][i] = 0;
             }
         }
     }
     public static void down(int[][] array){
         for(int i=0; i<array.length; i++){
-            int now = array[array[0].length-1][i];
-            int nowJ = array[0].length - 1;
+            int now = 0;
+            int nowJ = array.length - 1;
 
-            for(int j=1; j<array[0].length; j++){
+            for(int j=1; j<=array.length; j++){
                 if(now == 0){
-                    now = array[array[0].length - j][i];
-                }else if(now == array[array[0].length - j][i]){
-                    now += array[array[0].length - j][i];
+                    now = array[array.length - j][i];
+                } else if(array[array.length - j][i] == 0){
+                    continue;
+                } else if(now == array[array.length - j][i]){
+                    array[nowJ--][i] = now*2;
+                    now = 0;
                 } else{
                     array[nowJ--][i] = now;
                     now = array[array[0].length - j][i];
                 }
             }
-            for(int j=nowJ; j<array[0].length; j++){
-                array[array[0].length - j][i] = 0;
+            array[nowJ][i] = now;
+            for(int j=0; j < nowJ ; j++){
+                array[j][i] = 0;
             }
-
         }
     }
 
     public static void left(int[][] array){
-        System.out.println("left start");
-        checking(array);
         for(int i=0; i<array.length; i++){
             int now = array[i][0];
             int nowJ = 0;
@@ -116,7 +122,7 @@ public class Beak_12100 {
                 }
                 else if(now == array[i][j]){
                     array[i][nowJ++] = now *2;
-                    now = -1;
+                    now = 0;
                 } else{
                     array[i][nowJ++] = now;
                     now = array[i][j];
@@ -127,8 +133,6 @@ public class Beak_12100 {
                 array[i][j] = 0;
             }
         }
-        System.out.println("left finish");
-        checking(array);
 
     }
 
@@ -155,7 +159,6 @@ public class Beak_12100 {
             for(int j=0; j < nowJ ; j++){
                 array[i][j] = 0;
             }
-
         }
 
     }
