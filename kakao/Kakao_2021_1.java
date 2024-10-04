@@ -1,5 +1,10 @@
 package kakao;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.PriorityQueue;
+
 public class Kakao_2021_1 {
     public String level1(String new_id){
         new_id.toLowerCase();
@@ -15,6 +20,13 @@ public class Kakao_2021_1 {
             }
             answer += new_id.charAt(i);
         }
+        HashMap<String, String> map = new HashMap<>();
+        PriorityQueue<Integer> t = new PriorityQueue<>();
+        t.clear();
+
+        String[] answer1 = {};
+        List<String> answer2 = new ArrayList<>();
+        answer1 = (String[]) answer2.toArray();
         return new_id;
     }
 }
