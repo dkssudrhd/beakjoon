@@ -3,8 +3,7 @@ package gold;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.PriorityQueue;
-import java.util.StringTokenizer;
+import java.util.*;
 
 class Box{
     int a;
@@ -43,8 +42,12 @@ public class Beak_17420 {
         }
 
         int nowB = pqB.poll();
+        List<Box> boxes = new ArrayList<>();
+        int boxesA = 0;
+
         while(!pq.isEmpty()){
             Box box = pq.poll();
+
             if(box.a < nowB){
                 int k = (nowB - box.a)/30;
                 if((nowB - box.a)%30 !=0){
@@ -57,10 +60,25 @@ public class Beak_17420 {
                 if(pqB.isEmpty())
                     break;
                 nowB = pqB.poll();
+                for(Box b : boxes){
+                    pq.offer(b);
+                }
+                boxes.clear();
+            }else if(boxes.isEmpty()){
+                boxes.add(box);
+                boxesA = box.a;
+            }else if(boxesA < box.a){
+                for(Box b : boxes){
+                    b.a += 30;
+                    sum++;
+                    pq.offer(b);
+                }
+                boxes.clear();
+
+                boxes.add(box);
+                boxesA = box.a;
             }else{
-                box.a += 30;
-                sum++;
-                pq.offer(box);
+                boxes.add(box);
             }
         }
         System.out.println(sum);
