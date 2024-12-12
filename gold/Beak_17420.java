@@ -13,6 +13,16 @@ class Box{
         this.a = a;
         this.b = b;
     }
+
+    public int aSetting(int nowDay){
+        int k = (nowDay - a)/30;
+        if((nowDay-a)%30 != 0){
+            k++;
+        }
+        a += 30*k;
+        System.out.println("now a: " + a + " now b : " + b);
+        return k;
+    }
 }
 
 
@@ -42,43 +52,33 @@ public class Beak_17420 {
         }
 
         int nowB = pqB.poll();
-        List<Box> boxes = new ArrayList<>();
-        int boxesA = 0;
+        List<Box> boxes = new ArrayList<>();        // 같은 기한의
+        int boxesA = -1;
 
         while(!pq.isEmpty()){
             Box box = pq.poll();
 
-            if(box.a < nowB){
-                int k = (nowB - box.a)/30;
-                if((nowB - box.a)%30 !=0){
-                    k++;
-                }
-                box.a += 30 *k;
-                sum += k;
+            if(box.a < nowB){                       // 기한이 다된 기프티콘
+                sum += box.aSetting(nowB);
                 pq.offer(box);
-            }else if(box.b == nowB){
+            }else if(box.b == nowB){                //  가장 적게 남은 기프티콘일 경우
                 if(pqB.isEmpty())
                     break;
                 nowB = pqB.poll();
                 for(Box b : boxes){
+                    sum += b.aSetting(box.a);
                     pq.offer(b);
                 }
                 boxes.clear();
-            }else if(boxes.isEmpty()){
+            }else if(boxes.isEmpty()){              // 사용할 수는 있는
                 boxes.add(box);
                 boxesA = box.a;
             }else if(boxesA < box.a){
                 for(Box b : boxes){
-                    b.a += 30;
-                    sum++;
+                    sum += b.aSetting(box.a);
                     pq.offer(b);
                 }
                 boxes.clear();
-
-                boxes.add(box);
-                boxesA = box.a;
-            }else{
-                boxes.add(box);
             }
         }
         System.out.println(sum);
